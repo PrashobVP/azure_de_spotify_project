@@ -1,0 +1,9 @@
+{
+	"name": "adfdevspotifycenind",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "59cb9daf-3e9e-4440-b819-5e585e416a85",
+		"tenantId": "58d65dff-c2e6-4bd9-8996-27bec4a98b3d"
+	}
+}
