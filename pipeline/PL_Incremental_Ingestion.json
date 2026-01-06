@@ -31,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT *\nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_col} >\n      COALESCE(\n        TRY_CONVERT(datetime2(7), REPLACE('@{activity('Last_cdc').output.value[0].cdc}', 'Z', ''), 126),\n        '19000101'\n      )\n",
+							"value": "SELECT *\nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_col} > '@{if(empty(pipeline().parameters.from_date),activity('Last_cdc').output.value[0].cdc,pipeline().parameters.from_date)}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -301,6 +301,9 @@
 				"type": "string"
 			},
 			"cdc_col": {
+				"type": "string"
+			},
+			"from_date": {
 				"type": "string"
 			}
 		},
